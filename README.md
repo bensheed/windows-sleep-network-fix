@@ -43,6 +43,14 @@ This repository provides a **one-click automated solution** that:
 2. **Right-click** → "Run with PowerShell" **as Administrator**
 3. **Done!** Your network will auto-reconnect after every wake cycle
 
+### 🔄 Upgrading from v1.0?
+**No problem!** Just run the v2.0 installer - it will:
+- ✅ Automatically detect your existing installation
+- ✅ Upgrade all components with enhanced features
+- ✅ Preserve your existing logs (with backup)
+- ✅ Replace the scheduled task with improved settings
+- ✅ Show you exactly what was upgraded
+
 ## 🛠️ What It Does
 
 The setup script automatically:

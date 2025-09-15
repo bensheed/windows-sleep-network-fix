@@ -52,14 +52,35 @@ Write-LogMessage "Starting Windows Sleep Network Fix setup..." "INFO"
 
 # Create directory for scripts
 $scriptDir = "C:\NetworkReconnect"
-Write-LogMessage "Creating script directory: $scriptDir" "INFO"
+$isUpgrade = $false
+
+# Check if this is an upgrade from v1
+if (Test-Path $scriptDir) {
+    $isUpgrade = $true
+    Write-LogMessage "Existing installation detected - performing upgrade to v2.0" "INFO"
+    Write-ColorOutput "🔄 Upgrading existing installation to v2.0..." -Color Cyan
+    
+    # Check if old log exists and back it up
+    $oldLog = "$scriptDir\log.txt"
+    if (Test-Path $oldLog) {
+        $backupLog = "$scriptDir\log_v1_backup_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+        try {
+            Copy-Item $oldLog $backupLog -Force
+            Write-LogMessage "Backed up existing log to: $backupLog" "INFO"
+        } catch {
+            Write-LogMessage "Could not backup existing log: $($_.Exception.Message)" "WARN"
+        }
+    }
+} else {
+    Write-LogMessage "Fresh installation - creating script directory: $scriptDir" "INFO"
+}
 
 try {
     if (!(Test-Path $scriptDir)) {
         New-Item -ItemType Directory -Path $scriptDir -Force | Out-Null
         Write-LogMessage "Script directory created successfully" "INFO"
     } else {
-        Write-LogMessage "Script directory already exists" "INFO"
+        Write-LogMessage "Using existing script directory" "INFO"
     }
 } catch {
     Write-LogMessage "Failed to create script directory: $($_.Exception.Message)" "ERROR"
@@ -205,7 +226,11 @@ try {
     # Remove existing task if it exists
     $existingTask = Get-ScheduledTask -TaskName "NetworkReconnectOnWake" -ErrorAction SilentlyContinue
     if ($existingTask) {
-        Write-LogMessage "Removing existing scheduled task" "INFO"
+        if ($isUpgrade) {
+            Write-LogMessage "Upgrading existing scheduled task with enhanced settings" "INFO"
+        } else {
+            Write-LogMessage "Removing existing scheduled task" "INFO"
+        }
         Unregister-ScheduledTask -TaskName "NetworkReconnectOnWake" -Confirm:$false
     }
 
@@ -277,13 +302,27 @@ try {
 
 # Display completion summary
 Write-ColorOutput "`n========================================" -Color Green
-Write-ColorOutput "  Setup Completed Successfully!" -Color Green
+if ($isUpgrade) {
+    Write-ColorOutput "  Upgrade to v2.0 Completed Successfully!" -Color Green
+} else {
+    Write-ColorOutput "  Setup Completed Successfully!" -Color Green
+}
 Write-ColorOutput "========================================" -Color Green
 
-Write-ColorOutput "`nFiles created in $scriptDir`:" -Color White
-Write-ColorOutput "✓ NetworkReconnect.ps1 - Main reconnection script" -Color Gray
-Write-ColorOutput "✓ RunManually.bat - Manual testing tool" -Color Gray
-Write-ColorOutput "✓ log.txt - Activity logs (created on first run)" -Color Gray
+if ($isUpgrade) {
+    Write-ColorOutput "`n🎉 Upgrade Summary:" -Color Cyan
+    Write-ColorOutput "✓ Enhanced network reconnection script with smart connectivity testing" -Color Gray
+    Write-ColorOutput "✓ Improved scheduled task with better triggers and reliability" -Color Gray
+    Write-ColorOutput "✓ Enhanced logging with automatic rotation (5MB limit)" -Color Gray
+    Write-ColorOutput "✓ Better error handling and Wi-Fi profile management" -Color Gray
+    Write-ColorOutput "✓ Previous log backed up for reference" -Color Gray
+    Write-ColorOutput "`nYour existing setup has been upgraded with all v2.0 improvements!" -Color Green
+} else {
+    Write-ColorOutput "`nFiles created in $scriptDir`:" -Color White
+    Write-ColorOutput "✓ NetworkReconnect.ps1 - Main reconnection script" -Color Gray
+    Write-ColorOutput "✓ RunManually.bat - Manual testing tool" -Color Gray
+    Write-ColorOutput "✓ log.txt - Activity logs (created on first run)" -Color Gray
+}
 
 Write-ColorOutput "`nScheduled Task:" -Color White
 Write-ColorOutput "✓ 'NetworkReconnectOnWake' - Runs automatically on startup/logon" -Color Gray
