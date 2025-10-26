@@ -2,15 +2,15 @@
 
 **Automatically reconnect WiFi and Ethernet after Windows sleep/wake cycles**
 
-## 🚨 The Problem
+## The Problem
 
 Does your Windows computer lose network connectivity after waking from sleep? You're not alone! This is an extremely common issue affecting:
 
-- ✅ Windows 10 & 11 systems
-- ✅ Both WiFi and Ethernet connections  
-- ✅ Desktop PCs, laptops, and mini PCs
-- ✅ Various network adapter brands
-- ✅ Both battery and AC power modes
+- Windows 10 & 11 systems
+- Both WiFi and Ethernet connections
+- Desktop PCs, laptops, and mini PCs
+- Various network adapter brands
+- Both battery and AC power modes
 
 **Typical symptoms:**
 - Network shows as "connected" but no internet access
@@ -19,19 +19,19 @@ Does your Windows computer lose network connectivity after waking from sleep? Yo
 - Network troubleshooter temporarily fixes it
 - Issue returns after every sleep cycle
 
-## 💡 The Solution
+## The Solution
 
 This repository provides a **one-click automated solution** that:
 
-- 🔄 **Automatically reconnects** network adapters when your system wakes
-- 📋 **Runs on system startup** and wake events via Windows Task Scheduler
-- 🔧 **Releases and renews IP** configurations to reset connections
-- 📶 **Reconnects to saved WiFi** networks intelligently
-- 🌐 **Restarts network adapters** to ensure clean connections
-- 📝 **Logs all activity** for troubleshooting
-- ⚡ **Zero maintenance** - set it and forget it
+- **Automatically reconnects** network adapters when your system wakes
+- **Runs on system startup** and wake events via Windows Task Scheduler
+- **Releases and renews IP** configurations to reset connections
+- **Reconnects to saved WiFi** networks intelligently
+- **Restarts network adapters** to ensure clean connections
+- **Logs all activity** for troubleshooting
+- **Zero maintenance** - set it and forget it
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Method 1: Batch Script (Recommended)
 1. **Download** both `SetupAutoReconnect.bat` and `SetupAutoReconnect.ps1`
@@ -43,33 +43,33 @@ This repository provides a **one-click automated solution** that:
 2. **Right-click** → "Run with PowerShell" **as Administrator**
 3. **Done!** Your network will auto-reconnect after every wake cycle
 
-### 🔄 Upgrading from v1.0?
+### Upgrading from v1.0?
 **No problem!** Just run the v2.0 installer - it will:
-- ✅ Automatically detect your existing installation
-- ✅ Upgrade all components with enhanced features
-- ✅ Preserve your existing logs (with backup)
-- ✅ Replace the scheduled task with improved settings
-- ✅ Show you exactly what was upgraded
+- Automatically detect your existing installation
+- Upgrade all components with enhanced features
+- Preserve your existing logs (with backup)
+- Replace the scheduled task with improved settings
+- Show you exactly what was upgraded
 
-## 🛠️ What It Does
+## What It Does
 
 The setup script automatically:
-- ✅ Creates an intelligent PowerShell script that handles network reconnection
-- ✅ Sets up a Windows scheduled task to run on wake/startup/logon
-- ✅ Provides a manual test script for immediate troubleshooting
-- ✅ Creates detailed logs with automatic rotation for monitoring
-- ✅ Tests connectivity before attempting reconnection (avoids unnecessary resets)
-- ✅ Handles both Wi-Fi and Ethernet connections intelligently
-- ✅ Includes comprehensive error handling and recovery
+- Creates an intelligent PowerShell script that handles network reconnection
+- Sets up a Windows scheduled task to run on wake/startup/logon
+- Provides a manual test script for immediate troubleshooting
+- Creates detailed logs with automatic rotation for monitoring
+- Tests connectivity before attempting reconnection (avoids unnecessary resets)
+- Handles both Wi-Fi and Ethernet connections intelligently
+- Includes comprehensive error handling and recovery
 
-## 📁 Files Created
+## Files Created
 
 - `C:\NetworkReconnect\NetworkReconnect.ps1` - Main reconnection script (enhanced v2.0)
 - `C:\NetworkReconnect\RunManually.bat` - Manual testing tool with better UI
 - `C:\NetworkReconnect\log.txt` - Activity logs with automatic rotation
 - Windows Task: `NetworkReconnectOnWake` - Auto-execution with improved triggers
 
-## 🔧 Testing & Verification
+## Testing & Verification
 
 ### Manual Testing
 Test the fix before your next sleep cycle:
@@ -89,7 +89,7 @@ Check if the task was created successfully:
 schtasks /query /tn NetworkReconnectOnWake
 ```
 
-## 🗑️ Easy Uninstall
+## Easy Uninstall
 
 ### Method 1: Batch Uninstaller (Recommended)
 1. **Download** `Uninstall.bat`
@@ -103,7 +103,7 @@ schtasks /delete /tn NetworkReconnectOnWake /f
 ```
 Delete the folder: `C:\NetworkReconnect\`
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### PowerShell Execution Policy Issues
 If you get "execution policy" errors:
@@ -129,31 +129,31 @@ powershell -ExecutionPolicy Bypass -File SetupAutoReconnect.ps1
 
 ### Still Having Issues?
 Try these additional manual fixes:
-- ✅ Disable "Allow computer to turn off this device" in Device Manager
-- ✅ Set WiFi adapter to "Maximum Performance" in Power Options  
-- ✅ Disable "Energy Efficient Ethernet" in adapter properties
-- ✅ Update network drivers from manufacturer
-- ✅ Disable "Fast Startup" in Power Options
-- ✅ Run Windows Network Troubleshooter
+- Disable "Allow computer to turn off this device" in Device Manager
+- Set WiFi adapter to "Maximum Performance" in Power Options
+- Disable "Energy Efficient Ethernet" in adapter properties
+- Update network drivers from manufacturer
+- Disable "Fast Startup" in Power Options
+- Run Windows Network Troubleshooter
 
-## 🤝 Contributing
+## Contributing
 
 Found a better solution? Have a different use case? PRs welcome! This issue affects millions of Windows users, so every improvement helps.
 
-## ⚠️ Requirements
+## Requirements
 
 - **OS**: Windows 10/11 (tested on both)
 - **Privileges**: Administrator access (for initial setup only)
 - **PowerShell**: Version 5.0+ (included with Windows 10/11)
 - **Network**: Works with Wi-Fi, Ethernet, and mixed configurations
 
-## 📝 License
+## License
 
 MIT License - Use freely, modify as needed
 
-## 📋 What's New in Version 2.0
+## What's New in Version 2.0
 
-### 🆕 New Features
+### New Features
 - **Batch Script Installer**: Easier installation with automatic elevation
 - **Smart Connectivity Testing**: Only runs reconnection when actually needed
 - **Enhanced Logging**: Detailed logs with automatic rotation (5MB limit)
@@ -162,7 +162,7 @@ MIT License - Use freely, modify as needed
 - **Easy Uninstaller**: Clean removal with `Uninstall.bat`
 - **Better User Interface**: Colored output and progress indicators
 
-### 🔧 Technical Improvements
+### Technical Improvements
 - **Execution Policy Bypass**: Works on restricted corporate systems
 - **Enhanced Scheduled Task**: Better triggers and reliability settings
 - **Network Adapter Intelligence**: Only restarts physical adapters
@@ -171,9 +171,9 @@ MIT License - Use freely, modify as needed
 
 ---
 
-## 📊 Compatibility
+## Compatibility
 
-**✅ Tested and Working On:**
+** Tested and Working On:**
 - Windows 10 (all versions)
 - Windows 11 (all versions)
 - Intel Wi-Fi adapters (AX200, AX201, AC9560, etc.)
@@ -187,6 +187,6 @@ MIT License - Use freely, modify as needed
 
 ---
 
-**★ If this solved your network issues, please star the repo to help others find it!**
+** If this solved your network issues, please star the repo to help others find it!**
 
 *Actively maintained and tested on Windows 10/11 with various network configurations.*
