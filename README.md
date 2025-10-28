@@ -1,5 +1,7 @@
 # Windows Sleep Network Fix
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/bensheed/windows-sleep-network-fix)
+
 **Automatically reconnect WiFi and Ethernet after Windows sleep/wake cycles**
 
 ## The Problem
